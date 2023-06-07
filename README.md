@@ -27,6 +27,8 @@ This will create database for test and development, run the tests using RSpec an
 
 `http://localhost:3000/stocks`
 
+###### maybe need to refresh sometime to fetch free public API stocks
+
 ----------------------------------------------------------------    
 
 ### Runing and Installing on Ubuntu 20.04
