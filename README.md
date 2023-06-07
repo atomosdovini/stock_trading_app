@@ -22,7 +22,7 @@ sudo docker-compose up --build
 ~~~
 | check  `config/database.yml` need to set `host: db`
 
-This will create database for test and development, run the tests and run the application
+This will create database for test and development, run the tests using RSpec and run the Application
 #### Check the app open
 
 `http://localhost:3000/stocks`
