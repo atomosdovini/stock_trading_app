@@ -1,0 +1,34 @@
+version: "3.8"
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    command: bash -c "rails db:create && rails db:migrate && bundle exec rspec && bundle exec rails server -b 0.0.0.0"
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER:  <%= ENV['DATABASE_USERNAME'] %>
+      POSTGRES_PASSWORD: <%= ENV['DATABASE_PASSWORD'] %>
+      POSTGRES_DB: trading_stocks_dev
+    volumes:
+      - db-data-2:/var/lib/postgresql/data
+  test_db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: <%= ENV['DATABASE_USERNAME'] %>
+      POSTGRES_PASSWORD: <%= ENV['DATABASE_PASSWORD'] %>
+      POSTGRES_DB: trading_stocks_test
+    volumes:
+      - test-db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data-2:
+  test-db-data:
+
+
+
+
+

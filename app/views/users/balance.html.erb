@@ -1,0 +1,30 @@
+<div>
+  <h1>Your Account Balance</h1>
+
+  <p>Your current balance is: <%= @balance %></p>
+
+  <h2>Add Funds</h2>
+
+  <%= form_tag(add_balance_path, method: :post) do %>
+    <%= label_tag :amount, "Amount to Add:" %>
+    $<%= text_field_tag :amount, "", id: "amount-field", required: true %>
+    <%= submit_tag "Add Funds" %>
+  <% end %>
+
+  <script>
+    document.getElementById('amount-field').addEventListener('input', function() {
+      var value = this.value;
+      if (value !== "") {
+        var formattedValue = formatAmount(value);
+        this.value = formattedValue;
+      }
+    });
+    function formatAmount(value) {
+      var amount = parseFloat(value.replace(/[^\d.]/g, ""));
+      if (isNaN(amount)) {
+        return "";
+      }
+      return amount.toFixed(2);
+    }
+  </script>
+  </div>

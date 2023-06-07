@@ -1,0 +1,93 @@
+<div class="container">
+  <h1>List of Operations</h1>
+
+  <div class="trades-table-container">
+    <table id="trades-table" class="table trades-table">
+      <thead>
+        <tr>
+          <th>Stock</th>
+          <th>Symbol</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Operation</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @trades.each do |trade| %>
+          <tr>
+            <td><%= trade.stock_name %></td>
+            <td><%= trade.symbol %></td>
+            <td><%= trade.price %></td>
+            <td><%= trade.quantity %></td>
+            <td><%= trade.operation_type %></td>
+            <td>
+              <% if trade.operation_type == 'buy' %>
+                <%= form_tag(sell_path(operation_id: trade.operation_id, stock_id: trade.id, price: trade.price, quantity: trade.quantity, operation_type: "sell"), method: :post) do %>
+                  <%= submit_tag 'Sell Stock', class: 'button' %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%= pagy_bulma_nav(@pagy).html_safe %>
+
+<!-- Include Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+<!-- Include DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+
+<!-- Include DataTables JS -->
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    // Initialize DataTables
+    $('#trades-table').DataTable();
+  });
+</script>
+
+<style>
+  .container {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .trades-table-container {
+    margin-top: 20px;
+  }
+
+  .trades-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .trades-table th,
+  .trades-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .trades-table th {
+    background-color: #f5f5f5;
+  }
+
+  .trades-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  .trades-table tbody tr:hover {
+    background-color: #eaf2fa;
+  }
+</style>

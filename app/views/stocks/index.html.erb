@@ -1,0 +1,74 @@
+<div class="container">
+  <h1>List of Stocks</h1>
+
+  <div class="stocks-table-container">
+    <table id="stocks-table" class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Symbol</th>
+          <th>Current Price</th>
+          <th>Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @stock_data.each do |stock| %>
+          <tr>
+            <td><%= stock[:name] %></td>
+            <td><%= stock[:symbol] %></td>
+            <td><%= stock[:price] %></td>
+            <td>
+              <%= form_tag(buy_path(stock_id: stock[:id], price: stock[:price], operation_type: "buy"), method: :post) do %>
+                <%= select_tag "quantity", options_for_select([1, 2, 3, 4]) %>
+                <% if user_signed_in?  %>
+                  <% if current_user.balance > 0.0 %>
+                    <%= submit_tag 'Buy Stock', class: 'button' %>
+                  <% else %>
+                      <%= link_to "Add resource", user_balance_path(current_user), class: "balance" %> <%= number_with_precision(current_user.balance, precision: 2) %>
+                  <% end %>
+                <% else %>
+                  <%= link_to 'Login', new_user_session_path %> OR
+                  <%= link_to 'Register', new_user_registration_path %> to buy stocks
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <% if flash[:notice] %>
+    <div class="notice">
+      <%= flash[:notice] %>
+      <%= link_to "Add resource", user_balance_path(current_user), class: "balance" %> <%= number_with_precision(current_user.balance, precision: 2) %>
+    </div>
+  <% end %>
+</div>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('#stocks-table').DataTable();
+    $('#stocks-table_filter').addClass('d-flex justify-content-end');
+    $('#stocks-table_filter label').prepend('<i class="fa fa-search"></i>');
+    $('#stocks-table_filter input').addClass('form-control');
+    $('#stocks-table_filter input').keyup(function() {
+      table.search($(this).val()).draw();
+    });
+  });
+</script>
+
+<style>
+  .container {
+    width: 80%;
+    margin: 0 auto;
+  }
+  .stocks-table-container {
+    margin-top: 20px;
+  }
+</style>
