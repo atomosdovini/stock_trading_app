@@ -1,6 +1,6 @@
 # STOCK TRADING APP
 ## Where?
-- The stock trading app can be found on GitHub at the following repository: [GitHub](https://github.com/ler-Rith)
+- The stock trading app can be found on GitHub at the following repository: [GitHub](https://github.com/atomosdovini/stock_trading_app)
 
 ## Installation Guide
 
@@ -11,7 +11,7 @@
 
 ### Clone and Configure the App
 - Clone the stock trading app repository:
-    `git clone git@github.com:bh.git`
+    `git clone git@github.com:atomosdovini/stock_trading_app.git`
   - Navigate to the app directory 
 ~~~
 cd stock_trading_app
@@ -163,7 +163,7 @@ $ exit
 
 ### Clone and Configure the App
 - Clone the stock trading app repository:
-    `git clone git@github.com:bh.git`
+    `git clone [git@github.com:bh.git](https://github.com/atomosdovini/stock_trading_app)`
   - Navigate to the app directory:
   - run
 ~~~
@@ -208,3 +208,4 @@ When a user decides to buy stocks, they can specify the desired quantity. The pu
 It's important to note that selling stocks is only possible if the user has previously purchased them. Users must own the stocks they wish to sell. To review their transaction history, users can navigate to the 'My Operations' section, where they can access a comprehensive record of their buying and selling activities.
 
 In summary, the application empowers users to actively manage their stock portfolio by buying and selling stocks.
+
