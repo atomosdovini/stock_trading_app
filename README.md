@@ -22,10 +22,12 @@ sudo docker-compose up --build
 ~~~
 | check  `config/database.yml` need to set `host: db`
 
-This will create database for test and development, run the tests and run the application
+This will create database for test and development, run the tests using RSpec and run the Application
 #### Check the app open
 
 `http://localhost:3000/stocks`
+
+###### maybe need to refresh sometime to fetch free public API stocks
 
 ----------------------------------------------------------------    
 
@@ -207,5 +209,6 @@ When a user decides to buy stocks, they can specify the desired quantity. The pu
 
 It's important to note that selling stocks is only possible if the user has previously purchased them. Users must own the stocks they wish to sell. To review their transaction history, users can navigate to the 'My Operations' section, where they can access a comprehensive record of their buying and selling activities.
 
-In summary, the application empowers users to actively manage their stock portfolio by buying and selling stocks.
+In summary, the application permit users to manage their stock portfolio by buying and selling stocks.
 
+Next steps maybe can be do a deploy, a better interface for project and optimaze searchs.
